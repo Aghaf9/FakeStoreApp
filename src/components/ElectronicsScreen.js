@@ -1,30 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import ProductListScreen from "./ProductListScreen";
 
 export default function ElectronicsScreen() {
   return (
-    <View style={styles.container}>
-      <ProductListScreen category="electronics" title="Electronics" />
-    </View>
+    <ProductListScreen category="electronics" title="Electronics" />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#001040",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#ffffff",
+    backgroundColor: "#fff",
   },
 });
-
-JeweleryScreen.js
-JavaScript
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-

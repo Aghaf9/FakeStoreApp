@@ -56,10 +56,12 @@ export default function ProductListScreen({ category, title }) {
 
       <FlatList
         data={products}
-          keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}        
+          keyExtractor={(item, index) => 
+            item.id ? item.id.toString() : index.toString()
+          }        
           renderItem={({ item }) => (
-          <View style={styles.card}>
-            <Image source={{ uri: item.image }} style={styles.image} />
+            <View style={styles.card}>
+              <Image source={{ uri: item.image }} style={styles.image} />
 
             <View style={styles.info}>
               <Text style={styles.title}>{item.title}</Text>

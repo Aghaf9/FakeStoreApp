@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
+import ProductListScreen from "./ProductListScreen";
 
 export default function MensClothingScreen() {
   return (
@@ -12,12 +13,6 @@ export default function MensClothingScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#0028b8",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
+    backgroundColor: "#fff",
   },
 });
