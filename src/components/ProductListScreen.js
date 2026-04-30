@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   Text,
@@ -13,6 +13,7 @@ import {
 export default function ProductListScreen({ category, title, addToCart, navigation }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigation = useNavigation();
 
   useEffect(() => {
     console.log("Fetching category:", category);
@@ -84,7 +85,7 @@ export default function ProductListScreen({ category, title, addToCart, navigati
 />
       <TouchableOpacity
         style={styles.bottomButton}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation && navigation.navigate("Home")}
       >
         <Text style={styles.bottomButtonText}>Categories</Text>
       </TouchableOpacity>

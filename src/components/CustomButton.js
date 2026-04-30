@@ -2,12 +2,11 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 import AntDesign from '@expo/vector-icons/AntDesign';
-import Ionicons from '@expo/vector-icons/Ionicons';
 const CustomButton = ({ label, onPress }) => {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <View style={styles.buttonContent}>
-        <AntDesign name="dollar" size={24} color="black" />
+        <AntDesign name="dollar" size={24} color="#ffffff" />
         <Text style={styles.buttonText}>{label}</Text>
       </View>
     </TouchableOpacity>
