@@ -14,14 +14,31 @@ import CartScreen from "./src/components/CartScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+    const [cartItems, setCartItems] = React.useState([]);
+
+    const addToCart = (product) => {
+        setCart([...cartItems, product]);
+     };
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Electronics" component={ElectronicsScreen} />
-        <Stack.Screen name="Jewelery" component={JeweleryScreen} />
-        <Stack.Screen name="MensClothing" component={MensClothingScreen} />
-        <Stack.Screen name="WomensClothing" component={WomensClothingScreen} />
+        <Stack.Screen name="Electronics">
+            {(props) => <ElectronicsScreen {...props} addToCart={addToCart} />}
+        </Stack.Screen>    
+        
+        <Stack.Screen name="Jewelery">
+          {(props) => <JeweleryScreen {...props} addToCart={addToCart} />}
+        </Stack.Screen>
+
+        <Stack.Screen name="MensClothing">
+          {(props) => <MensClothingScreen {...props} addToCart={addToCart} />}
+        </Stack.Screen>
+
+        <Stack.Screen name="WomensClothing">
+          {(props) => <WomensClothingScreen {...props} addToCart={addToCart} />}
+        </Stack.Screen>
+
         <Stack.Screen name="Cart" component={CartScreen} />
       </Stack.Navigator>
     </NavigationContainer>

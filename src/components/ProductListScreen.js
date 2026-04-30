@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { TouchableOpacity } from "react-native";
 import {
   View,
   Text,
@@ -8,7 +9,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 
-export default function ProductListScreen({ category, title }) {
+export default function ProductListScreen({ category, title, addToCart, navigation }) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -60,24 +61,40 @@ export default function ProductListScreen({ category, title }) {
             item.id ? item.id.toString() : index.toString()
           }        
           renderItem={({ item }) => (
-            <View style={styles.card}>
-              <Image source={{ uri: item.image }} style={styles.image} />
+  <View style={styles.card}>
+    <Image source={{ uri: item.image }} style={styles.image} />
 
-            <View style={styles.info}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.price}>${item.price}</Text>
-              <Text style={styles.description} numberOfLines={2}>
-                {item.description}
-              </Text>
-            </View> 
-          </View>
-        )}
+    <View style={styles.info}>
+      <Text style={styles.title}>{item.title}</Text>
+      <Text style={styles.price}>${item.price}</Text>
+      <Text style={styles.description} numberOfLines={2}>
+        {item.description}
+      </Text>
+
+      <Text
+        style={styles.cartButton}
+        onPress={() => addToCart && addToCart(item)}
+      >
+        Add to Cart
+      </Text>
+    </View>
+  </View>
+)}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  cartButton: {
+  marginTop: 8,
+  backgroundColor: "#0f52ba",
+  color: "#fff",
+  padding: 8,
+  textAlign: "center",
+  borderRadius: 5,
+  fontWeight: "bold",
+},
   container: {
     flex: 1,
     padding: 15,
