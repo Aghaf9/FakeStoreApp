@@ -4,7 +4,11 @@ import ProductListScreen from "./ProductListScreen";
 
 export default function WomensClothingScreen() {
   return (
-      <ProductListScreen category="women's clothing" title="Women's Clothing" addToCart={addToCart} navigation={navigation}/>
+    <ProductListScreen 
+      category="women's clothing"
+      title="Women's Clothing"
+      addToCart={addToCart} 
+    />
   );
 }
 

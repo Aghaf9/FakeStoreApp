@@ -12,7 +12,9 @@ import CartScreen from "./src/components/CartScreen";
 
 
 const Stack = createNativeStackNavigator();
-
+const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+};
 export default function App() {
     const [cartItems, setCartItems] = React.useState([]);
 

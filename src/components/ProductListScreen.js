@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-export default function ProductListScreen({ category, title, addToCart, navigation }) {
+export default function ProductListScreen({ category, title, addToCart}) {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigation = useNavigation();
