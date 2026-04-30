@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import ProductListScreen from "./ProductListScreen";
 
-export default function MensClothingScreen() {
+export default function MensClothingScreen({ addToCart }) {
   return (
     <ProductListScreen 
       category="men's clothing"

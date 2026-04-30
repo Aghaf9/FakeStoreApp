@@ -2,12 +2,12 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 import ProductListScreen from "./ProductListScreen";
 
-export default function JeweleryScreen() {
+export default function JeweleryScreen({ addToCart }) {
   return (
     <ProductListScreen 
-      category="jewelery"
-      title="Jewelery"
-      addToCart={addToCart} 
+        category="jewelery"
+        title="Jewelery"
+        addToCart={addToCart} 
     />
   );
 }
