@@ -18,13 +18,19 @@ export default function ProductListScreen({ category, title }) {
     fetch(`https://fakestoreapi.com/products/category/${encodeURIComponent(category)}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log("DATA:", data);   
-        setProducts(data);
+        console.log("DATA:", data);
+
+        if (Array.isArray(data)) {
+          setProducts(data);
+        } else {
+          setProducts([]);
+        }
       })
       .catch((error) => {
         console.log("ERROR:", error);
+        setProducts([]);
       })
-      .finally(() => setLoading(false));
+  .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
@@ -50,8 +56,8 @@ export default function ProductListScreen({ category, title }) {
 
       <FlatList
         data={products}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
+          keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}        
+          renderItem={({ item }) => (
           <View style={styles.card}>
             <Image source={{ uri: item.image }} style={styles.image} />
 
