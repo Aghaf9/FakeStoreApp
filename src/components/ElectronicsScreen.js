@@ -4,7 +4,7 @@ import ProductListScreen from "./ProductListScreen";
 
 export default function ElectronicsScreen() {
   return (
-    <ProductListScreen category="electronics" title="Electronics" />
+      <ProductListScreen category="electronics" title="Electronics" addToCart={addToCart} navigation={navigation}/>
   );
 }
 

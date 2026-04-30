@@ -54,6 +54,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",  
     alignItems: "center",     
 },
+button: {
+  backgroundColor: "#001431",
+  paddingVertical: 16,
+  borderRadius: 6,
+  marginVertical: 10,
+},
 
 headerBox: {
     position: "absolute",

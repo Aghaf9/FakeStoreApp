@@ -7,6 +7,7 @@ import {
   FlatList,
   Image,
   ActivityIndicator,
+  TouchableOpacity,
 } from "react-native";
 
 export default function ProductListScreen({ category, title, addToCart, navigation }) {
@@ -79,13 +80,20 @@ export default function ProductListScreen({ category, title, addToCart, navigati
       </Text>
     </View>
   </View>
-)}
-      />
+  )}
+/>
+      <TouchableOpacity
+        style={styles.bottomButton}
+        onPress={() => navigation.navigate("Home")}
+      >
+        <Text style={styles.bottomButtonText}>Categories</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+
   cartButton: {
   marginTop: 8,
   backgroundColor: "#0f52ba",
@@ -93,6 +101,18 @@ const styles = StyleSheet.create({
   padding: 8,
   textAlign: "center",
   borderRadius: 5,
+  fontWeight: "bold",
+},
+bottomButton: {
+  backgroundColor: "#222",
+  padding: 15,
+  borderRadius: 8,
+  alignItems: "center",
+  marginTop: 10,
+},
+bottomButtonText: {
+  color: "#fff",
+  fontSize: 16,
   fontWeight: "bold",
 },
   container: {

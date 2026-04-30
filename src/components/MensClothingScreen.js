@@ -4,9 +4,7 @@ import ProductListScreen from "./ProductListScreen";
 
 export default function MensClothingScreen() {
   return (
-    <View style={styles.container}>
-      <ProductListScreen category="men's clothing" title="Men's Clothing" />
-    </View>
+      <ProductListScreen category="men's clothing" title="Men's Clothing" addToCart={addToCart} navigation={navigation}/>
   );
 }
 
