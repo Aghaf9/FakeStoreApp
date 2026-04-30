@@ -69,26 +69,22 @@ export default function ProductListScreen({ category, title, addToCart}) {
     <View style={styles.info}>
       <Text style={styles.title}>{item.title}</Text>
       <Text style={styles.price}>${item.price}</Text>
+
       <Text style={styles.description} numberOfLines={2}>
         {item.description}
       </Text>
 
-      <Text
+      {/* ✅ FIXED BUTTON */}
+      <TouchableOpacity
         style={styles.cartButton}
         onPress={() => addToCart && addToCart(item)}
       >
-        Add to Cart
-      </Text>
+        <Text style={styles.cartButtonText}>Add to Cart</Text>
+      </TouchableOpacity>
     </View>
   </View>
-  )}
-/>
-      <TouchableOpacity
-        style={styles.bottomButton}
-        onPress={() => navigation && navigation.navigate("Home")}
-      >
-        <Text style={styles.bottomButtonText}>Categories</Text>
-      </TouchableOpacity>
+)}
+      />
     </View>
   );
 }
@@ -98,12 +94,16 @@ const styles = StyleSheet.create({
   cartButton: {
   marginTop: 8,
   backgroundColor: "#0f52ba",
-  color: "#fff",
   padding: 8,
-  textAlign: "center",
   borderRadius: 5,
-  fontWeight: "bold",
 },
+cartButtonText: {
+  color: "#fff",
+  fontSize: 14,
+  fontWeight: "bold",
+  textAlign: "center",
+},
+
 bottomButton: {
   backgroundColor: "#222",
   padding: 15,
