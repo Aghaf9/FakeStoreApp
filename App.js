@@ -61,10 +61,6 @@ export default function App() {
     );
   };
 
-  const clearCart = () => {
-    setCartItems([]);
-  };
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="SignIn">
@@ -115,22 +111,13 @@ export default function App() {
               cart={cartItems}
               increaseQuantity={increaseQuantity}
               decreaseQuantity={decreaseQuantity}
-              clearCart={clearCart}
               username={username}
+              email={email}
             />
           )}
         </Stack.Screen>
 
-        <Stack.Screen name="Checkout">
-          {(props) => (
-            <CheckoutScreen
-              {...props}
-              username={username}
-              email={email}
-              password={password}
-            />
-          )}
-        </Stack.Screen>
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
 
         <Stack.Screen name="Profile">
           {(props) => (
@@ -138,7 +125,6 @@ export default function App() {
               {...props}
               username={username}
               email={email}
-              password={password}
             />
           )}
         </Stack.Screen>
