@@ -3,10 +3,10 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import HomeScreen from "./src/screens/Categories";
-import ElectronicsScreen from "./src/componenets/ElectronicsScreen";
-import JeweleryScreen from "./src/componenets/JeweleryScreen";
-import MensClothingScreen from "./src/componenets/MensClothingScreen";
-import WomensClothingScreen from "./src/componenets/WomensClothingScreen";
+import ElectronicsScreen from "./src/components/ElectronicsScreen";
+import JeweleryScreen from "./src/components/JeweleryScreen";
+import MensClothingScreen from "./src/components/MensClothingScreen";
+import WomensClothingScreen from "./src/components/WomensClothingScreen";
 
 const Stack = createNativeStackNavigator();
 
