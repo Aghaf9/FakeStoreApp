@@ -8,28 +8,88 @@ import JeweleryScreen from "./src/components/JeweleryScreen";
 import MensClothingScreen from "./src/components/MensClothingScreen";
 import WomensClothingScreen from "./src/components/WomensClothingScreen";
 import CartScreen from "./src/components/CartScreen";
-
+import SignInScreen from "./src/screens/SignInScreen";
+import SignUpScreen from "./src/screens/SignUpScreen";
+import CheckoutScreen from "./src/screens/CheckoutScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
-    const [cartItems, setCartItems] = React.useState([]);
+  const [cartItems, setCartItems] = React.useState([]);
+  const [username, setUsername] = React.useState("");
 
-    const addToCart = (product) => {
-        setCartItems([...cartItems, product]);
-    };
+  const addToCart = (product) => {
+    setCartItems((currentItems) => {
+      const existingItem = currentItems.find((item) => item.id === product.id);
+
+      if (existingItem) {
+        return currentItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+
+      return [...currentItems, { ...product, quantity: 1 }];
+    });
+  };
+
+  const increaseQuantity = (productId) => {
+    setCartItems((currentItems) =>
+      currentItems.map((item) =>
+        item.id === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  };
+
+  const decreaseQuantity = (productId) => {
+    setCartItems((currentItems) =>
+      currentItems
+        .map((item) =>
+          item.id === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+  };
 
   return (
     <NavigationContainer>
-        
-      <Stack.Navigator initialRouteName="Home">
+      <Stack.Navigator initialRouteName="SignIn">
+        <Stack.Screen name="SignIn">
+          {(props) => (
+            <SignInScreen
+              {...props}
+              username={username}
+              setUsername={setUsername}
+            />
+          )}
+        </Stack.Screen>
+
+        <Stack.Screen name="SignUp">
+          {(props) => (
+            <SignUpScreen
+              {...props}
+              username={username}
+              setUsername={setUsername}
+            />
+          )}
+        </Stack.Screen>
 
         <Stack.Screen name="Home" component={HomeScreen} />
-        
+
         <Stack.Screen name="Electronics">
-            {(props) => <ElectronicsScreen {...props} addToCart={addToCart} />}
-        </Stack.Screen>    
-        
+          {(props) => <ElectronicsScreen {...props} addToCart={addToCart} />}
+        </Stack.Screen>
+
         <Stack.Screen name="Jewelery">
           {(props) => <JeweleryScreen {...props} addToCart={addToCart} />}
         </Stack.Screen>
@@ -43,7 +103,22 @@ export default function App() {
         </Stack.Screen>
 
         <Stack.Screen name="Cart">
-          {(props) => <CartScreen {...props} cartItems={cartItems} />}
+          {(props) => (
+            <CartScreen
+              {...props}
+              cart={cartItems}
+              increaseQuantity={increaseQuantity}
+              decreaseQuantity={decreaseQuantity}
+              clearCart={clearCart}
+              username={username}
+            />
+          )}
+        </Stack.Screen>
+
+        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+
+        <Stack.Screen name="Profile">
+          {(props) => <ProfileScreen {...props} username={username} />}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation, route }) => {
                     />
                     <CustomButton
                         label="Cart"
-                        onPress={() => navigation.navigate("Cart", { todos })}
+                        onPress={() => navigation.navigate("Cart")}
                     />
             </View>
         </View>
