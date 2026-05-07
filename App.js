@@ -7,25 +7,22 @@ import ElectronicsScreen from "./src/components/ElectronicsScreen";
 import JeweleryScreen from "./src/components/JeweleryScreen";
 import MensClothingScreen from "./src/components/MensClothingScreen";
 import WomensClothingScreen from "./src/components/WomensClothingScreen";
-import ProductListScreen from "./src/components/ProductListScreen";
 import CartScreen from "./src/components/CartScreen";
 
 
 const Stack = createNativeStackNavigator();
-const addToCart = (product) => {
-    setCartItems([...cartItems, product]);
-};
+
 export default function App() {
     const [cartItems, setCartItems] = React.useState([]);
 
     const addToCart = (product) => {
-        setCart([...cartItems, product]);
-     };
+        setCartItems([...cartItems, product]);
+    };
 
   return (
     <NavigationContainer>
         
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Home">
 
         <Stack.Screen name="Home" component={HomeScreen} />
         
@@ -45,7 +42,9 @@ export default function App() {
           {(props) => <WomensClothingScreen {...props} addToCart={addToCart} />}
         </Stack.Screen>
 
-        <Stack.Screen name="Cart" component={CartScreen} />
+        <Stack.Screen name="Cart">
+          {(props) => <CartScreen {...props} cartItems={cartItems} />}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

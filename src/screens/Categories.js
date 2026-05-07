@@ -42,6 +42,10 @@ const HomeScreen = ({ navigation, route }) => {
                         label="Womens Clothing"
                         onPress={() => navigation.navigate("WomensClothing", { todos })}
                     />
+                    <CustomButton
+                        label="Cart"
+                        onPress={() => navigation.navigate("Cart", { todos })}
+                    />
             </View>
         </View>
     );
