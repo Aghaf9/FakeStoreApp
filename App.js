@@ -8,18 +8,20 @@ import JeweleryScreen from "./src/components/JeweleryScreen";
 import MensClothingScreen from "./src/components/MensClothingScreen";
 import WomensClothingScreen from "./src/components/WomensClothingScreen";
 import CartScreen from "./src/components/CartScreen";
+
 import SignInScreen from "./src/screens/SignInScreen";
-import SignUpScreen from "./src/screens/SignUpScreen.js";
+import SignUpScreen from "./src/screens/SignUpScreen";
 import CheckoutScreen from "./src/screens/CheckoutScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
-const [username, setUsername] = React.useState("");
-const [email, setEmail] = React.useState("");
-const [password, setPassword] = React.useState("");
+
 export default function App() {
   const [cartItems, setCartItems] = React.useState([]);
+
   const [username, setUsername] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const addToCart = (product) => {
     setCartItems((currentItems) => {
@@ -70,8 +72,9 @@ export default function App() {
           {(props) => (
             <SignInScreen
               {...props}
-              username={username}
               setUsername={setUsername}
+              setEmail={setEmail}
+              setPassword={setPassword}
             />
           )}
         </Stack.Screen>
@@ -80,8 +83,9 @@ export default function App() {
           {(props) => (
             <SignUpScreen
               {...props}
-              username={username}
               setUsername={setUsername}
+              setEmail={setEmail}
+              setPassword={setPassword}
             />
           )}
         </Stack.Screen>
@@ -117,10 +121,26 @@ export default function App() {
           )}
         </Stack.Screen>
 
-        <Stack.Screen name="Checkout" component={CheckoutScreen} />
+        <Stack.Screen name="Checkout">
+          {(props) => (
+            <CheckoutScreen
+              {...props}
+              username={username}
+              email={email}
+              password={password}
+            />
+          )}
+        </Stack.Screen>
 
         <Stack.Screen name="Profile">
-          {(props) => <ProfileScreen {...props} username={username} />}
+          {(props) => (
+            <ProfileScreen
+              {...props}
+              username={username}
+              email={email}
+              password={password}
+            />
+          )}
         </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>

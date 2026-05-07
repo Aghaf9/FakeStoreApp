@@ -16,7 +16,6 @@ export default function CheckoutScreen({
 
       <Text style={styles.text}>Username: {username}</Text>
       <Text style={styles.text}>Email: {email}</Text>
-      <Text style={styles.text}>Password: {password}</Text>
       <Text style={styles.text}>Order ID: {orderId}</Text>
 
       <TouchableOpacity
