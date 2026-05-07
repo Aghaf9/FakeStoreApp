@@ -1,11 +1,13 @@
 import React from "react";
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function SignInScreen({ navigation, username, setUsername }) {
-  const [inputName, setInputName] = React.useState(username);
+export default function SignInScreen({ navigation, setUsername }) {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
 
   const signIn = () => {
-    setUsername(inputName || "Guest");
+    const nameFromEmail = email.split("@")[0] || "Guest";
+    setUsername(nameFromEmail);
     navigation.replace("Home");
   };
 
@@ -15,9 +17,19 @@ export default function SignInScreen({ navigation, username, setUsername }) {
 
       <TextInput
         style={styles.input}
-        placeholder="Enter username"
-        value={inputName}
-        onChangeText={setInputName}
+        placeholder="Email"
+        value={email}
+        onChangeText={setEmail}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
+
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry={true}
       />
 
       <TouchableOpacity style={styles.button} onPress={signIn}>
