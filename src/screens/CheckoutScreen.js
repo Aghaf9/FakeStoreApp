@@ -2,7 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 export default function CheckoutScreen({ route, navigation }) {
-  const { username, email, orderId } = route.params;
+  const username = route?.params?.username || "Guest";
+  const email = route?.params?.email || "No email provided";
+  const orderId = route?.params?.orderId || "No order ID";
 
   return (
     <View style={styles.container}>
@@ -14,10 +16,11 @@ export default function CheckoutScreen({ route, navigation }) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("Profile")}
-      >
-        <Text style={styles.buttonText}>View User Profile</Text>
-      </TouchableOpacity>
+        onPress={() => navigation.navigate("SignIn")}
+    >
+        
+  <Text style={styles.buttonText}>Sign Out</Text>
+</TouchableOpacity>
 
       <TouchableOpacity
         style={styles.button}
