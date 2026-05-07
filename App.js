@@ -9,12 +9,14 @@ import MensClothingScreen from "./src/components/MensClothingScreen";
 import WomensClothingScreen from "./src/components/WomensClothingScreen";
 import CartScreen from "./src/components/CartScreen";
 import SignInScreen from "./src/screens/SignInScreen";
-import SignUpScreen from "./src/screens/SignUpScreen";
+import SignUpScreen from "./src/screens/SignUpScreen.js";
 import CheckoutScreen from "./src/screens/CheckoutScreen";
 import ProfileScreen from "./src/screens/ProfileScreen";
 
 const Stack = createNativeStackNavigator();
-
+const [username, setUsername] = React.useState("");
+const [email, setEmail] = React.useState("");
+const [password, setPassword] = React.useState("");
 export default function App() {
   const [cartItems, setCartItems] = React.useState([]);
   const [username, setUsername] = React.useState("");

@@ -1,14 +1,22 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function CheckoutScreen({ route, navigation }) {
-  const { username, orderId } = route.params;
+export default function CheckoutScreen({
+  route,
+  navigation,
+  username,
+  email,
+  password,
+}) {
+  const { orderId } = route.params;
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Checkout Complete</Text>
 
       <Text style={styles.text}>Username: {username}</Text>
+      <Text style={styles.text}>Email: {email}</Text>
+      <Text style={styles.text}>Password: {password}</Text>
       <Text style={styles.text}>Order ID: {orderId}</Text>
 
       <TouchableOpacity
@@ -29,9 +37,26 @@ export default function CheckoutScreen({ route, navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, justifyContent: "center", padding: 25, backgroundColor: "#fff" },
-  title: { fontSize: 28, fontWeight: "bold", textAlign: "center", marginBottom: 25 },
-  text: { fontSize: 18, textAlign: "center", marginBottom: 10 },
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
+
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 25,
+  },
+
+  text: {
+    fontSize: 18,
+    textAlign: "center",
+    marginBottom: 10,
+  },
+
   button: {
     backgroundColor: "#16007a",
     padding: 15,
@@ -39,5 +64,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 15,
   },
-  buttonText: { color: "#fff", fontSize: 16, fontWeight: "bold" },
+
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+  },
 });
