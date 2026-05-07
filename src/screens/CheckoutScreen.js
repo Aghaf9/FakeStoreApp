@@ -1,14 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-export default function CheckoutScreen({
-  route,
-  navigation,
-  username,
-  email,
-  password,
-}) {
-  const { orderId } = route.params;
+export default function CheckoutScreen({ route, navigation }) {
+  const { username, email, orderId } = route.params;
 
   return (
     <View style={styles.container}>
@@ -42,20 +36,17 @@ const styles = StyleSheet.create({
     padding: 25,
     backgroundColor: "#fff",
   },
-
   title: {
     fontSize: 28,
     fontWeight: "bold",
     textAlign: "center",
     marginBottom: 25,
   },
-
   text: {
     fontSize: 18,
     textAlign: "center",
     marginBottom: 10,
   },
-
   button: {
     backgroundColor: "#16007a",
     padding: 15,
@@ -63,7 +54,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginTop: 15,
   },
-
   buttonText: {
     color: "#fff",
     fontSize: 16,

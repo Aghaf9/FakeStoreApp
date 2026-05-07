@@ -2,119 +2,107 @@ import React from "react";
 import {
   View,
   Text,
-  FlatList,
-  Image,
+  TextInput,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
 
-export default function CartScreen({
-  cart,
-  increaseQuantity,
-  decreaseQuantity,
-  clearCart,
-  username,
+export default function SignUpScreen({
   navigation,
+  setUsername,
+  setEmail,
+  setPassword,
 }) {
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const [usernameInput, setUsernameInput] = React.useState("");
+  const [emailInput, setEmailInput] = React.useState("");
+  const [passwordInput, setPasswordInput] = React.useState("");
 
-  const checkout = () => {
-    const orderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+  const signUp = () => {
+    setUsername(usernameInput);
+    setEmail(emailInput);
+    setPassword(passwordInput);
 
-    clearCart();
-
-    navigation.navigate("Checkout", {
-      username,
-      orderId,
-    });
+    navigation.replace("Home");
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Shopping Cart</Text>
+      <Text style={styles.title}>Sign Up</Text>
 
-      {cart.length === 0 ? (
-        <Text style={styles.empty}>Your cart is empty</Text>
-      ) : (
-        <>
-          <FlatList
-            data={cart}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={({ item }) => (
-              <View style={styles.card}>
-                <Image source={{ uri: item.image }} style={styles.image} />
+      <TextInput
+        style={styles.input}
+        placeholder="Username"
+        value={usernameInput}
+        onChangeText={setUsernameInput}
+      />
 
-                <View style={styles.info}>
-                  <Text style={styles.title}>{item.title}</Text>
-                  <Text style={styles.price}>${item.price}</Text>
-                  <Text>Quantity: {item.quantity}</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        value={emailInput}
+        onChangeText={setEmailInput}
+        keyboardType="email-address"
+        autoCapitalize="none"
+      />
 
-                  <View style={styles.quantityRow}>
-                    <TouchableOpacity
-                      style={styles.qtyButton}
-                      onPress={() => decreaseQuantity(item.id)}
-                    >
-                      <Text style={styles.qtyText}>-</Text>
-                    </TouchableOpacity>
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        value={passwordInput}
+        onChangeText={setPasswordInput}
+        secureTextEntry={true}
+      />
 
-                    <TouchableOpacity
-                      style={styles.qtyButton}
-                      onPress={() => increaseQuantity(item.id)}
-                    >
-                      <Text style={styles.qtyText}>+</Text>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-              </View>
-            )}
-          />
+      <TouchableOpacity style={styles.button} onPress={signUp}>
+        <Text style={styles.buttonText}>Create Account</Text>
+      </TouchableOpacity>
 
-          <Text style={styles.total}>Total: ${total.toFixed(2)}</Text>
-
-          <TouchableOpacity style={styles.checkoutButton} onPress={checkout}>
-            <Text style={styles.checkoutText}>Checkout</Text>
-          </TouchableOpacity>
-        </>
-      )}
+      <TouchableOpacity onPress={() => navigation.navigate("SignIn")}>
+        <Text style={styles.link}>Already have an account?</Text>
+      </TouchableOpacity>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 15, backgroundColor: "#fff" },
-  heading: { fontSize: 26, fontWeight: "bold", textAlign: "center", marginBottom: 15 },
-  empty: { fontSize: 18, textAlign: "center", marginTop: 40 },
-  card: {
-    flexDirection: "row",
-    backgroundColor: "#f7f7f7",
-    padding: 12,
-    marginBottom: 12,
-    borderRadius: 10,
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 25,
+    backgroundColor: "#fff",
+  },
+
+  title: {
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 25,
+  },
+
+  input: {
     borderWidth: 1,
-    borderColor: "#ddd",
+    borderColor: "#999",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 15,
   },
-  image: { width: 70, height: 70, resizeMode: "contain" },
-  info: { flex: 1, marginLeft: 12 },
-  title: { fontSize: 14, fontWeight: "bold" },
-  price: { fontSize: 16, color: "#0f52ba", marginTop: 5, fontWeight: "bold" },
-  quantityRow: { flexDirection: "row", marginTop: 10 },
-  qtyButton: {
-    backgroundColor: "#0f52ba",
-    paddingVertical: 6,
-    paddingHorizontal: 14,
-    borderRadius: 5,
-    marginRight: 10,
-  },
-  qtyText: { color: "#fff", fontSize: 18, fontWeight: "bold" },
-  total: { fontSize: 22, fontWeight: "bold", textAlign: "center", marginVertical: 15 },
-  checkoutButton: {
+
+  button: {
     backgroundColor: "#16007a",
     padding: 15,
     borderRadius: 8,
     alignItems: "center",
   },
-  checkoutText: { color: "#fff", fontSize: 18, fontWeight: "bold" },
+
+  buttonText: {
+    color: "#fff",
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+
+  link: {
+    color: "#0f52ba",
+    textAlign: "center",
+    marginTop: 20,
+  },
 });
