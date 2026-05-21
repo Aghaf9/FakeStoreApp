@@ -7,6 +7,12 @@ import ElectronicsScreen from "./src/components/ElectronicsScreen";
 import JeweleryScreen from "./src/components/JeweleryScreen";
 import MensClothingScreen from "./src/components/MensClothingScreen";
 import WomensClothingScreen from "./src/components/WomensClothingScreen";
+import CartScreen from "./src/screens/CartScreen";
+import CheckoutScreen from "./src/screens/CheckoutScreen";
+import SignInScreen from "./src/screens/SignInScreen";
+import SignUpScreen from "./src/screens/SignUpScreen";
+import ProfileScreen from "./src/screens/ProfileScreen";
+
 
 const Stack = createNativeStackNavigator();
 

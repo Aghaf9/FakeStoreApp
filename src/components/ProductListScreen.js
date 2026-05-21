@@ -77,7 +77,7 @@ export default function ProductListScreen({ category, title, addToCart}) {
       {/* Only show "Add to Cart" if addToCart function is provided */}
       <TouchableOpacity
         style={styles.cartButton}
-        onPress={() => addToCart(item)}
+        onPress={() => addToCart && addToCart(item)}
       >
         <Text style={styles.cartButtonText}>Add to Cart</Text>
       </TouchableOpacity>
