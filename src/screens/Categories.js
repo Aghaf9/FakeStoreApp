@@ -1,96 +1,32 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, Button } from "react-native";
-import CustomButton from "../components/CustomButton";
+import React from "react";
+import { SafeAreaView, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
-const HomeScreen = ({ navigation, route }) => {
-    const [todos, setTodos] = useState([]);
+const categories = [
+  { label: "Electronics", value: "electronics" },
+  { label: "Jewelery", value: "jewelery" },
+  { label: "Men's Clothing", value: "men's clothing" },
+  { label: "Women's Clothing", value: "women's clothing" },
+];
 
-    useEffect(() => {
-        if (route.params?.updatedTodos) {
-            setTodos(route.params.updatedTodos);
-        }
-    }, [route.params?.updatedTodos]);
-    
-    const ShowTodo = ({ item }) => {
-        return (
-          <View style={styles.todoItem}>
-              <Text style={styles.todoTitle}>{item.title}</Text>
-              <Text style={styles.todoDescription}>{item.description}</Text>
-          </View>
-        );
-    };
-    return (
-        <View style = {styles.container}>
-            <View style={styles.headerBox}>
-                <Text style = {styles.title}>Categories</Text>
-            </View>
-
-            <View style = {styles.buttonContainer}>
-                    <CustomButton
-                        label="Electronics"
-                        onPress={() => navigation.navigate("Electronics", { todos })}
-                    />
-                    <CustomButton
-                        label="Jewelery"
-                        onPress={() => navigation.navigate("Jewelery", { todos })}
-                    />
-                    <CustomButton
-                        label="Mens Clothing"
-                        onPress={() => navigation.navigate("MensClothing", { todos })}
-                    />
-                    <CustomButton
-                        label="Womens Clothing"
-                        onPress={() => navigation.navigate("WomensClothing", { todos })}
-                    />
-                    <CustomButton
-                        label="Cart"
-                        onPress={() => navigation.navigate("Cart")}
-                    />
-            </View>
-        </View>
-    );
+export default function CategoriesScreen({ navigation }) {
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.title}>Product Categories</Text>
+      {categories.map((category) => (
+        <TouchableOpacity key={category.value} style={styles.card} onPress={() => navigation.navigate("ProductList", { category: category.value, title: category.label })}>
+          <Ionicons name="pricetag" size={28} color="#16007a" />
+          <Text style={styles.cardText}>{category.label}</Text>
+          <Ionicons name="chevron-forward" size={24} color="#777" />
+        </TouchableOpacity>
+      ))}
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#aeaeae",
-    justifyContent: "center",  
-    alignItems: "center",     
-},
-button: {
-  backgroundColor: "#001431",
-  paddingVertical: 16,
-  borderRadius: 6,
-  marginVertical: 10,
-},
-
-headerBox: {
-    position: "absolute",
-    top: 80,
-    width: "80%",
-    backgroundColor: "#16007a",
-    borderWidth: 1,
-    borderColor: "#000000",
-    borderRadius: 10,
-    padding: 15,
-    alignItems: "center",
-},
-
-title: {
-    fontSize: 26,
-    fontWeight: "bold",
-    color: "#ffffff",
-},
-
-buttonContainer: {
-    width: "80%",
-    backgroundColor: "#16007a",
-    borderWidth: 1,
-    borderColor: "#000000",
-    borderRadius: 12,
-    padding: 20,
-    alignItems: "stretch",
-  },
+  container: { flex: 1, backgroundColor: "#fff", padding: 18 },
+  title: { fontSize: 28, fontWeight: "bold", textAlign: "center", color: "#16007a", marginVertical: 20 },
+  card: { flexDirection: "row", alignItems: "center", padding: 18, marginVertical: 8, borderRadius: 12, backgroundColor: "#f4f2ff", borderWidth: 1, borderColor: "#ddd" },
+  cardText: { flex: 1, fontSize: 18, fontWeight: "bold", marginLeft: 12 },
 });
-export default HomeScreen;
