@@ -7,7 +7,7 @@ export default function SplashScreen() {
     <View style={styles.container}>
       <View style={styles.logo}><Ionicons name="storefront" size={64} color="#fff" /></View>
       <Text style={styles.title}>Fake Store</Text>
-      <Text style={styles.subtitle}>React Native Shopping App</Text>
+      <Text style={styles.subtitle}>Welcome to Ali's App</Text>
     </View>
   );
 }
