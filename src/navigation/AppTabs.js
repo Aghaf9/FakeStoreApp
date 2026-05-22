@@ -17,15 +17,22 @@ export default function AppTabs({ loggedIn, app, initialRouteName }) {
 
   return (
     <Tab.Navigator
-      initialRouteName={initialRouteName}
-      screenOptions={({ route }) => ({
-        headerShown: false,
-        tabBarIcon: ({ color, size }) => {
-          const icons = { Products: "storefront", "My Cart": "cart", "My Orders": "receipt", Profile: "person", Account: "person" };
-          return <Ionicons name={icons[route.name]} size={size} color={color} />;
-        },
-      })}
-    >
+  key={loggedIn ? "logged-in" : "logged-out"}
+  initialRouteName={loggedIn ? "Products" : "Account"}
+  screenOptions={({ route }) => ({
+    headerShown: false,
+    tabBarIcon: ({ color, size }) => {
+      const icons = {
+        Products: "storefront",
+        "My Cart": "cart",
+        "My Orders": "receipt",
+        Profile: "person",
+        Account: "person",
+      };
+      return <Ionicons name={icons[route.name]} size={size} color={color} />;
+    },
+  })}
+>
       <Tab.Screen name="Products" options={{ tabBarBadge: loggedIn && cartCount > 0 ? cartCount : undefined }}>
         {(props) => loggedIn ? <ProductsStack {...props} app={app} /> : <LockedTabScreen />}
       </Tab.Screen>
